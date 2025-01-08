@@ -39,7 +39,7 @@ $args['tax_query'] = array(
 ); 
 
 $query = new WP_Query($args);
-$icon = \Elementor\Addon_Elementor_Icon_manager_finwice::render_icon( themesflat_get_opt_elementor('services_post_icon') );
+$icon = \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( themesflat_get_opt_elementor('services_post_icon') );
 
 ?>
 
@@ -115,7 +115,7 @@ the_post_thumbnail( $themesflat_thumbnail );
 
 <span><?php esc_html_e('Read More', 'themesflat') ?></span>
 
-<i aria-hidden="true" class="icon-finwice-chevron-right"></i>
+<i aria-hidden="true" class="icon-inverna-chevron-right"></i>
 
 </a>
 

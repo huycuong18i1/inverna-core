@@ -10,7 +10,7 @@
 
  *
 
- * @package finwice
+ * @package inverna
 
  */
 
@@ -91,7 +91,7 @@ if ( ! empty( $exclude ) ) {
 }
 
 $query = new WP_Query( $query_args );
-$icon = \Elementor\Addon_Elementor_Icon_manager_finwice::render_icon( themesflat_get_opt_elementor('project_post_icon') );
+$icon = \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( themesflat_get_opt_elementor('project_post_icon') );
 ?>
 
 
@@ -170,7 +170,7 @@ $icon = \Elementor\Addon_Elementor_Icon_manager_finwice::render_icon( themesflat
 
     <span><?php esc_html_e('Read More', 'themesflat') ?></span>
 
-    <i aria-hidden="true" class="icon-finwice-chevron-right"></i>
+    <i aria-hidden="true" class="icon-inverna-chevron-right"></i>
 
 </a>
 

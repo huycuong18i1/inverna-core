@@ -449,7 +449,7 @@ function facebook_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 
@@ -507,7 +507,7 @@ function twitter_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 
@@ -565,7 +565,7 @@ function linkedin_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 
@@ -625,7 +625,7 @@ function youtube_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 
@@ -685,7 +685,7 @@ function custom1_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 
@@ -745,7 +745,7 @@ function custom2_team_metabox() {
 
     gap: 20px;">
 
-        <select style="font-family: 'finwice';     border-radius: 999px;
+        <select style="font-family: 'inverna';     border-radius: 999px;
 
     padding: 4px 10px;
 

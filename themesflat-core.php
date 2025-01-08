@@ -233,6 +233,12 @@ final class ThemesFlat_Addon_For_Elementor_inverna {
         require_once( __DIR__ . '/widgets/widget-list-carousel.php' );
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFListCarousel() ); 
 
+        require_once( __DIR__ . '/widgets/widget-service.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFServices_Widget() ); 
+
+        require_once( __DIR__ . '/widgets/widget-team.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFTeam_Widget() ); 
+
     }
 
     public function init_controls() {}    

@@ -10,7 +10,7 @@
 
  *
 
- * @package finwice
+ * @package inverna
 
  */
 
@@ -166,7 +166,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($facebook); ?>"><i class="icon-finwice-<?php echo esc_attr($facebook_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($facebook); ?>"><i class="icon-inverna-<?php echo esc_attr($facebook_icon); ?>"></i></a>
 
                                 </li>
 
@@ -176,7 +176,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($twitter) ?>"><i class="icon-finwice-<?php echo esc_attr($twitter_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($twitter) ?>"><i class="icon-inverna-<?php echo esc_attr($twitter_icon); ?>"></i></a>
 
                                 </li>
 
@@ -186,7 +186,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($linkedin) ?>"><i class="icon-finwice-<?php echo esc_attr($linkedin_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($linkedin) ?>"><i class="icon-inverna-<?php echo esc_attr($linkedin_icon); ?>"></i></a>
 
                                 </li>
 
@@ -196,7 +196,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($youtube) ?>"><i class="icon-finwice-<?php echo esc_attr($youtube_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($youtube) ?>"><i class="icon-inverna-<?php echo esc_attr($youtube_icon); ?>"></i></a>
 
                                 </li>
 
@@ -206,7 +206,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($custom1) ?>"><i class="icon-finwice-<?php echo esc_attr($custom1_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($custom1) ?>"><i class="icon-inverna-<?php echo esc_attr($custom1_icon); ?>"></i></a>
 
                                 </li>
 
@@ -216,7 +216,7 @@ $query = new WP_Query( $args );
 
                                 <li>
 
-                                    <a href="<?php echo esc_url($custom2) ?>"><i class="icon-finwice-<?php echo esc_attr($custom2_icon); ?>"></i></a>
+                                    <a href="<?php echo esc_url($custom2) ?>"><i class="icon-inverna-<?php echo esc_attr($custom2_icon); ?>"></i></a>
 
                                 </li>
 
@@ -225,7 +225,7 @@ $query = new WP_Query( $args );
                         </ul>
 
                         <?php endif; ?>
-                        <span class="plus"> <i class="icon-finwice-plus"></i> </span>
+                        <span class="plus"> <i class="icon-inverna-plus"></i> </span>
 
                                                 </div>
 

@@ -52,6 +52,7 @@ $query = new WP_Query( $query_args );
 
 ?>
 
+
 <?php while ( $query->have_posts() ) : $query->the_post();?>
 
 <?php 
@@ -75,12 +76,16 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
                 <?php echo sprintf('%s',$featured_image); ?>
 
             </a>
+            <div class="post-meta-category post-meta">
+
+                <?php the_category( ', ' ); ?>
+
+            </div>
+
 
         </div>
 
         <?php endif; ?>
-
-
 
         <div class="content">
 
@@ -88,17 +93,32 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
             <div class="post-category">
 
-                <div class="post-meta-category post-meta">
+                <?php if ( $settings['show_meta_date'] == 'yes' ): ?>
 
-                    <?php the_category( ', ' ); ?>
+                <div class="post-date-item post-meta">
+
+                    <?php
+
+                    $archive_year  = get_the_time('Y'); 
+
+                    $archive_month = get_the_time('m'); 
+
+                    $archive_day   = get_the_time('d');
+
+                    ?>
+
+                    <a href="<?php echo get_day_link($archive_year, $archive_month, $archive_day); ?>"><i
+                            class="icon-inverna-calendar-days"></i><?php echo get_the_date('d M Y'); ?></a>
 
                 </div>
+
+                <?php endif; ?>
 
                 <?php if ( $settings['show_meta_user'] == 'yes' ): ?>
 
                 <div class="post-meta-author post-meta">
 
-                    <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+                    <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><i class="icon-inverna-user"></i>
 
                         <?php echo esc_html__(' ', 'themesflat-core').'<span>'.get_the_author().'</span>'; ?></a>
 
@@ -110,39 +130,21 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
                 <div class="post-meta-comment post-meta">
 
-                    <?php echo comments_popup_link( esc_html__( '0 Comments ', 'tf-addon-for-elementer' ), esc_html__(  '1 Comment', 'tf-addon-for-elementer' ), esc_html__( '% Comments', 'tf-addon-for-elementer' ) ); ?>
+                <i class="icon-inverna-comments"></i><?php echo comments_popup_link( esc_html__( '0 Comments ', 'tf-addon-for-elementer' ), esc_html__(  '1 Comment', 'tf-addon-for-elementer' ), esc_html__( '% Comments', 'tf-addon-for-elementer' ) ); ?>
 
                 </div>
 
-                <?php endif; ?>               
+                <?php endif; ?>
 
             </div>
+
             <?php endif; ?>
+
 
             <?php if ( $settings['show_title'] == 'yes' ): ?>
 
             <h5 class="title"><a href="<?php echo esc_url( get_the_permalink() ); ?>"
                     title="<?php echo esc_attr( get_the_title() ); ?>"><?php echo get_the_title(); ?></a></h5>
-
-            <?php endif; ?>
-
-            <?php if ( $settings['show_meta_date'] == 'yes' ): ?>
-
-            <div class="post-date-item">
-
-                <?php
-
-                    $archive_year  = get_the_time('Y'); 
-
-                    $archive_month = get_the_time('m'); 
-
-                   $archive_day   = get_the_time('d');
-
-                ?>
-
-                <a href="<?php echo get_day_link($archive_year, $archive_month, $archive_day); ?>"><i class="icon-inverna-calendar-days"></i><?php echo get_the_date('j F Y'); ?></a>
-
-            </div>
 
             <?php endif; ?>
 
@@ -160,11 +162,13 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
             <div class="tf-button-container">
 
-                <a href="<?php echo esc_url( get_permalink() ) ?>" class="tf-button tf-btn-blog">
+                <a href="<?php echo esc_url( get_permalink() ) ?>" class="tf-button tf-btn-blog2">
+
+                    <?php echo \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( $settings['post_icon_readmore'], [ 'aria-hidden' => 'true' ] );?>
 
                     <span><?php echo esc_attr( $settings['button_text'] ); ?></span>
 
-                    <?php echo \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( $settings['post_icon_readmore'], [ 'aria-hidden' => 'true' ] );?>
+                    
 
                 </a>
 

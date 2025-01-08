@@ -235,9 +235,9 @@ add_filter( 'request', 'themesflat_fix_custom_posttype_posts_per_page' );
 
 function themesflat_pagination_posttype( $query = '' , $paging_style = '' ) {    
 
-    $prev_arrow = 'icon-finwice-arrow-right';
+    $prev_arrow = 'icon-inverna-arrow-right';
 
-    $next_arrow = 'icon-finwice-arrow-left1';
+    $next_arrow = 'icon-inverna-arrow-left1';
 
     
 

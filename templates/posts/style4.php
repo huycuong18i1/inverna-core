@@ -80,8 +80,6 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
         <?php endif; ?>
 
-
-
         <div class="content">
 
             <?php if ( $settings['show_meta_category'] == 'yes' ): ?>
@@ -93,6 +91,26 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
                     <?php the_category( ', ' ); ?>
 
                 </div>
+
+                <?php if ( $settings['show_meta_date'] == 'yes' ): ?>
+
+                <div class="post-date-item post-meta">
+
+                    <?php
+
+                    $archive_year  = get_the_time('Y'); 
+
+                    $archive_month = get_the_time('m'); 
+
+                    $archive_day   = get_the_time('d');
+
+                    ?>
+
+                    <a href="<?php echo get_day_link($archive_year, $archive_month, $archive_day); ?>"><?php echo get_the_date('d M Y'); ?></a>
+
+                </div>
+
+                <?php endif; ?>
 
                 <?php if ( $settings['show_meta_user'] == 'yes' ): ?>
 
@@ -114,35 +132,17 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
                 </div>
 
-                <?php endif; ?>               
+                <?php endif; ?>
 
             </div>
+
             <?php endif; ?>
+
 
             <?php if ( $settings['show_title'] == 'yes' ): ?>
 
             <h5 class="title"><a href="<?php echo esc_url( get_the_permalink() ); ?>"
                     title="<?php echo esc_attr( get_the_title() ); ?>"><?php echo get_the_title(); ?></a></h5>
-
-            <?php endif; ?>
-
-            <?php if ( $settings['show_meta_date'] == 'yes' ): ?>
-
-            <div class="post-date-item">
-
-                <?php
-
-                    $archive_year  = get_the_time('Y'); 
-
-                    $archive_month = get_the_time('m'); 
-
-                   $archive_day   = get_the_time('d');
-
-                ?>
-
-                <a href="<?php echo get_day_link($archive_year, $archive_month, $archive_day); ?>"><i class="icon-inverna-calendar-days"></i><?php echo get_the_date('j F Y'); ?></a>
-
-            </div>
 
             <?php endif; ?>
 
@@ -160,11 +160,11 @@ $featured_image = sprintf('<img src="%s" alt="image">', \Elementor\Group_Control
 
             <div class="tf-button-container">
 
-                <a href="<?php echo esc_url( get_permalink() ) ?>" class="tf-button tf-btn-blog">
-
-                    <span><?php echo esc_attr( $settings['button_text'] ); ?></span>
+                <a href="<?php echo esc_url( get_permalink() ) ?>" class="tf-button tf-btn-blog2">
 
                     <?php echo \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( $settings['post_icon_readmore'], [ 'aria-hidden' => 'true' ] );?>
+
+                    <span><?php echo esc_attr( $settings['button_text'] ); ?></span>
 
                 </a>
 
