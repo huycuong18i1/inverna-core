@@ -20,7 +20,7 @@
         </div>
 
         <div class="content"> 
-            <h3 class="title">
+            <h3 class="title border_eff">
                 <a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
             </h3>
             <?php if ( $settings['show_exc'] == 'yes' ): ?>
