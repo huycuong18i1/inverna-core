@@ -1,12 +1,12 @@
 <?php
 
-class TFServices_Widget extends \Elementor\Widget_Base {
+class TFProject_Widget extends \Elementor\Widget_Base {
 
 
 
 	public function get_name() {
 
-        return 'tf-service';
+        return 'tf-project';
 
     }
 
@@ -14,7 +14,7 @@ class TFServices_Widget extends \Elementor\Widget_Base {
 
     public function get_title() {
 
-        return esc_html__( 'TF Service', 'themesflat-core' );
+        return esc_html__( 'TF Project', 'themesflat-core' );
 
     }
 
@@ -46,7 +46,7 @@ class TFServices_Widget extends \Elementor\Widget_Base {
 
 	public function get_script_depends() {
 
-		return ['owl-carousel','tf-service'];
+		return ['owl-carousel','tf-project'];
 
 	}
 
@@ -152,7 +152,7 @@ class TFServices_Widget extends \Elementor\Widget_Base {
 
 						'type' => \Elementor\Controls_Manager::SELECT2,
 
-						'options' => ThemesFlat_Addon_For_Elementor_inverna::tf_get_taxonomies('services_category'),
+						'options' => ThemesFlat_Addon_For_Elementor_inverna::tf_get_taxonomies('project_category'),
 
 						'label_block' => true,
 
@@ -401,6 +401,28 @@ class TFServices_Widget extends \Elementor\Widget_Base {
 					]
 				);
 
+				$this->add_control(
+					'show_filter',
+					[
+						'label' => esc_html__( 'Filter', 'themesflat-core' ),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+						'label_on' => esc_html__( 'Show', 'themesflat-core' ),
+						'label_off' => esc_html__( 'Hide', 'themesflat-core' ),
+						'return_value' => 'yes',
+						'default' => 'no',
+					]
+				);
+	
+				$this->add_control( 
+					'filter_category_order',
+					[
+						'label' => esc_html__( 'Filter Order', 'themesflat-core' ),
+						'type'	=> \Elementor\Controls_Manager::TEXT,	
+						'description' => esc_html__( 'Filter Slug Categories Order Split By ","', 'themesflat-core' ),
+						'default' => '',
+						'label_block' => true,	
+					]
+				);
 
 
 
@@ -575,6 +597,62 @@ $this->add_control(
 
 $this->add_control( 
 
+	'carousel_center',
+
+	[
+
+		'label' => esc_html__( 'Center Item', 'themesflat-core' ),
+
+		'type' => \Elementor\Controls_Manager::SWITCHER,
+
+		'label_on' => esc_html__( 'On', 'themesflat-core' ),
+
+		'label_off' => esc_html__( 'Offf', 'themesflat-core' ),
+
+		'return_value' => 'yes',
+
+		'default' => 'no',
+
+		'condition' => [
+
+			'carousel' => 'yes',
+
+		],
+
+	]
+
+);
+
+$this->add_control( 
+
+	'carousel_loop',
+
+	[
+
+		'label' => esc_html__( 'Loop Item', 'themesflat-core' ),
+
+		'type' => \Elementor\Controls_Manager::SWITCHER,
+
+		'label_on' => esc_html__( 'On', 'themesflat-core' ),
+
+		'label_off' => esc_html__( 'Offf', 'themesflat-core' ),
+
+		'return_value' => 'yes',
+
+		'default' => 'no',
+
+		'condition' => [
+
+			'carousel' => 'yes',
+
+		],
+
+	]
+
+);
+
+$this->add_control( 
+
 	'carousel_arrow',
 
 	[
@@ -687,7 +765,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post .item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post .item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],		
 
@@ -723,7 +801,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post .item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post .item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],
 
@@ -745,7 +823,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post .item .services-post' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post .item .project-post' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],					
 
@@ -767,13 +845,55 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post .item .services-post' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post .item .project-post' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],
 
 				]
 
 			);
+			$this->add_control( 
+
+				'inner_background_color',
+	
+				[
+	
+					'label' => esc_html__( 'Background Color', 'themesflat-core' ),
+	
+					'type' => \Elementor\Controls_Manager::COLOR,
+	
+	
+					'selectors' => [
+	
+						'{{WRAPPER}} .tf-project-wrap .project-post' => 'background: {{VALUE}}',
+	
+					],
+	
+				]
+	
+			); 
+
+			$this->add_responsive_control( 
+
+				'content_border_radius_over',
+	
+				[
+	
+					'label' => esc_html__( 'Border Radius', 'themesflat-core' ),
+	
+					'type' => \Elementor\Controls_Manager::DIMENSIONS,
+	
+					'size_units' => [ 'px' , '%' ],
+	
+					'selectors' => [
+	
+						'{{WRAPPER}} .tf-project-wrap .project-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+	
+					],
+	
+				]
+	
+			); 
 
 
 			$this->end_controls_section();    
@@ -811,7 +931,7 @@ $this->end_controls_section();
 
 				'selectors' => [
 
-					'{{WRAPPER}} .tf-services-wrap .content' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .tf-project-wrap .content' => 'background: {{VALUE}}',
 
 				],
 
@@ -829,7 +949,7 @@ $this->end_controls_section();
 
 				'label' => esc_html__( 'Border', 'themesflat-core' ),
 
-				'selector' => '{{WRAPPER}} .tf-services-wrap .content',
+				'selector' => '{{WRAPPER}} .tf-project-wrap .content',
 
 			]
 
@@ -851,7 +971,7 @@ $this->end_controls_section();
 
 				'selectors' => [
 
-					'{{WRAPPER}} .tf-services-wrap .content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .tf-project-wrap .content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 				],
 
@@ -872,7 +992,7 @@ $this->end_controls_section();
 
 				'selectors' => [
 
-					'{{WRAPPER}} .wrap-services-post .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wrap-project-post .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 				],					
 
@@ -894,7 +1014,7 @@ $this->end_controls_section();
 
 				'selectors' => [
 
-					'{{WRAPPER}} .wrap-services-post .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .wrap-project-post .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 				],
 
@@ -938,7 +1058,7 @@ $this->end_controls_section();
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .tf-services-wrap .featured-post img' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .tf-project-wrap .featured-post img' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -957,10 +1077,10 @@ $this->end_controls_section();
 
 				'selectors' => [
 
-					'{{WRAPPER}} .tf-services-wrap .featured-post img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .tf-services-wrap .featured-post a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .tf-services-wrap.style2 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .tf-services-wrap.style3 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .tf-project-wrap .featured-post img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .tf-project-wrap .featured-post a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .tf-project-wrap.style2 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .tf-project-wrap.style3 .featured-post' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 				],
 
@@ -1014,8 +1134,8 @@ $this->end_controls_section();
 	
 						'selectors' => [
 	
-							'{{WRAPPER}} .tf-services-wrap .icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-							'{{WRAPPER}} .tf-services-wrap .icon' => 'font-size: {{SIZE}}{{UNIT}};',
+							'{{WRAPPER}} .tf-project-wrap .icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+							'{{WRAPPER}} .tf-project-wrap .icon' => 'font-size: {{SIZE}}{{UNIT}};',
 	
 						],
 	
@@ -1029,8 +1149,8 @@ $this->end_controls_section();
 						'label' => esc_html__( 'Color', 'themesflat-core' ),
 						'type' => \Elementor\Controls_Manager::COLOR,
 						'selectors' => [
-							'{{WRAPPER}} .tf-services-wrap .icon' => 'color: {{VALUE}}',
-							'{{WRAPPER}} .tf-services-wrap .icon svg *' => 'fill: {{VALUE}}',
+							'{{WRAPPER}} .tf-project-wrap .icon' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .tf-project-wrap .icon svg *' => 'fill: {{VALUE}}',
 						],
 					]
 				);
@@ -1067,7 +1187,7 @@ $this->end_controls_section();
 
 					'label' => esc_html__( 'Typography', 'themesflat-core' ),
 
-					'selector' => '{{WRAPPER}} .wrap-services-post .services-post .title ',
+					'selector' => '{{WRAPPER}} .wrap-project-post .project-post .title ',
 
 				]
 
@@ -1087,7 +1207,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post .services-post .title ' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post .project-post .title ' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],
 
@@ -1127,7 +1247,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post .services-post .title a' => 'color: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post .project-post .title a' => 'color: {{VALUE}}',
 
 							],
 
@@ -1171,7 +1291,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post  .services-post  .title a:hover' => 'color: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post  .project-post  .title a:hover' => 'color: {{VALUE}}',
 
 							],
 
@@ -1223,7 +1343,7 @@ $this->end_controls_section();
 
 					'label' => esc_html__( 'Typography', 'themesflat-core' ),
 
-					'selector' => '{{WRAPPER}} .wrap-services-post  .services-post .description',
+					'selector' => '{{WRAPPER}} .wrap-project-post  .project-post .description',
 
 				]
 
@@ -1245,7 +1365,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post  .services-post .description' => 'color: {{VALUE}}',
+						'{{WRAPPER}} .wrap-project-post  .project-post .description' => 'color: {{VALUE}}',
 
 					],
 
@@ -1269,7 +1389,7 @@ $this->end_controls_section();
 
 					'selectors' => [
 
-						'{{WRAPPER}} .wrap-services-post  .services-post .description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+						'{{WRAPPER}} .wrap-project-post  .project-post .description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
 					],
 
@@ -1317,7 +1437,7 @@ $this->end_controls_section();
 
 					'label' => esc_html__( 'Typography', 'themesflat-core' ),
 
-					'selector' => '{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a,{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a i, {{WRAPPER}} .wrap-services-post .services-post .tf-button-container a .read ',
+					'selector' => '{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a,{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a i, {{WRAPPER}} .wrap-project-post .project-post .tf-button-container a .read ',
 
 				]
 
@@ -1355,7 +1475,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a , {{WRAPPER}} .wrap-services-post .services-post .tf-button-container a i, {{WRAPPER}} .tf-services-wrap.style3 .tf-button .read' => 'color: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a , {{WRAPPER}} .wrap-project-post .project-post .tf-button-container a i, {{WRAPPER}} .tf-project-wrap.style3 .tf-button .read' => 'color: {{VALUE}}',
 
 							],
 
@@ -1379,7 +1499,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a' => 'background: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a' => 'background: {{VALUE}}',
 
 							],
 
@@ -1399,7 +1519,7 @@ $this->end_controls_section();
 			
 							'label' => esc_html__( 'Border', 'themesflat-core' ),
 			
-							'selector' => '{{WRAPPER}} .tf-services-wrap.style3 .tf-button',
+							'selector' => '{{WRAPPER}} .tf-project-wrap.style3 .tf-button',
 
 			
 						]
@@ -1440,7 +1560,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a:hover' => 'color: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a:hover' => 'color: {{VALUE}}',
 							],
 
 							
@@ -1463,7 +1583,7 @@ $this->end_controls_section();
 
 							'selectors' => [
 
-								'{{WRAPPER}} .wrap-services-post .services-post .tf-button-container a:hover' => 'background: {{VALUE}}',
+								'{{WRAPPER}} .wrap-project-post .project-post .tf-button-container a:hover' => 'background: {{VALUE}}',
 							],
 
 							
@@ -1506,7 +1626,7 @@ $this->end_controls_section();
 		}
 
 
-		$this->add_render_attribute( 'tf_services_wrap', ['class' => ['tf-services-wrap', 'themesflat-services-taxonomy', $settings['style'], $has_carousel ], 'data-tabid' => $this->get_id()] );
+		$this->add_render_attribute( 'tf_project_wrap', ['class' => ['tf-project-wrap', 'themesflat-project-taxonomy', $settings['style'], $has_carousel ], 'data-tabid' => $this->get_id()] );
 
 
 
@@ -1528,7 +1648,7 @@ $this->end_controls_section();
 
 		$query_args = array(
 
-            'post_type' => 'services',
+            'post_type' => 'project',
 
             'posts_per_page' => $settings['posts_per_page'],
 
@@ -1544,7 +1664,7 @@ $this->end_controls_section();
 
 							        array(
 
-							            'taxonomy' => 'services_category',
+							            'taxonomy' => 'project_category',
 
 							            'field'    => 'slug',
 
@@ -1592,7 +1712,9 @@ $this->end_controls_section();
 
 		if ( $query->have_posts() ) : ?>
 
-<div <?php echo $this->get_render_attribute_string('tf_services_wrap'); ?>
+<div <?php echo $this->get_render_attribute_string('tf_project_wrap'); ?>
+    data-loop="<?php echo esc_attr($settings['carousel_loop']); ?>"
+    data-center="<?php echo esc_attr($settings['carousel_center']); ?>"
     data-column="<?php echo esc_attr($settings['carousel_column_desk']); ?>"
     data-column2="<?php echo esc_attr($settings['carousel_column_tablet']); ?>"
     data-column3="<?php echo esc_attr($settings['carousel_column_mobile']); ?>"
@@ -1600,7 +1722,33 @@ $this->end_controls_section();
     data-next_icon="icon-inverna-icon-71" data-arrow="<?php echo esc_attr($settings['carousel_arrow']) ?>"
     data-bullets="<?php echo esc_attr($settings['carousel_bullets']) ?>">
 
-    <div class="wrap-services-post row <?php echo esc_attr($settings['layout']); ?> ">
+	<?php 
+				if ($settings['show_filter'] == 'yes'):
+					$show_filter_class = 'show-filter'; 
+					$filter_category_order = $settings['filter_category_order'];
+					$filters = wp_list_pluck( get_terms( 'project_category','hide_empty=1'), 'name','slug' );
+					echo '<ul class="project-filter posttype-filter" data-page="'.$settings['posts_per_page'].'">';
+						echo '<li class="active"><a data-filter="*" href="#">' . esc_html('All', 'themesflat-core') . '</a></li>'; 
+						if ($filter_category_order == '') { 
+
+							foreach ($filters as $key => $value) {
+								echo '<li><a data-filter=".' . esc_attr( strtolower($key)) . '" href="#" title="' . esc_attr( $value ) . '">' . esc_html( $value ) . '</a></li>'; 
+							}
+						
+						}
+						else {
+							$filter_category_order = explode(",", $filter_category_order);
+							foreach ($filter_category_order as $key) {
+								$key = trim($key);
+								echo '<li><a data-filter=".' . esc_attr( strtolower($key)) . '" href="#" title="' . esc_attr( $filters[$key] ) . '">' . esc_html( $filters[$key] ) . '</a></li>'; 
+							}
+						}
+	                echo '</ul>';
+
+	            endif;
+		?>
+
+    <div class="wrap-project-post row <?php echo esc_attr($settings['layout']); ?> ">
 
         <?php if ( $settings['carousel'] == 'yes' ): ?>
         <div class="owl-carousel">
@@ -1613,9 +1761,9 @@ $this->end_controls_section();
 
 						$attr['settings'] = $settings; 
 						$attr['count'] = $count; 
-						$attr['icon'] = \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( themesflat_get_opt_elementor('services_post_icon') );
+						$attr['icon'] = \Elementor\Addon_Elementor_Icon_manager_inverna::render_icon( themesflat_get_opt_elementor('project_post_icon') );
 
-						tf_get_template_widget("service/{$settings['style']}", $attr); 
+						tf_get_template_widget("project/{$settings['style']}", $attr); 
 
 						?>
 

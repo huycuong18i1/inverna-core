@@ -236,6 +236,9 @@ final class ThemesFlat_Addon_For_Elementor_inverna {
         require_once( __DIR__ . '/widgets/widget-service.php' );
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFServices_Widget() ); 
 
+        require_once( __DIR__ . '/widgets/widget-project.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFProject_Widget() ); 
+
         require_once( __DIR__ . '/widgets/widget-team.php' );
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \TFTeam_Widget() ); 
 
@@ -250,6 +253,7 @@ final class ThemesFlat_Addon_For_Elementor_inverna {
         }
 
         //widget
+        wp_register_style( 'owl-carousel', plugins_url( '/assets/css/owl.carousel.min.css', __FILE__ ) );
         wp_register_style( 'tf-title-section', plugins_url( '/assets/css/title-section/tf-title-section.css', __FILE__ ) );
         wp_register_style( 'tf-counter', plugins_url( '/assets/css/counter/tf-counter.css', __FILE__ ) );
         wp_register_style( 'tf-testimonial', plugins_url( '/assets/css/testimonial/tf-testimonial.css', __FILE__ ) );
@@ -287,6 +291,11 @@ final class ThemesFlat_Addon_For_Elementor_inverna {
         wp_register_script( 'tf-testimonial', plugins_url( '/assets/js/testimonial/tf-testimonial.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'tf-video', plugins_url( '/assets/js/video/tf-video.js', __FILE__ ), [ 'jquery' ], false, true );
         wp_register_script( 'tf-title', plugins_url( '/assets/js/title/tf-title.js', __FILE__ ), [ 'jquery' ], false, true );
+        wp_register_script( 'tf-service', plugins_url( '/assets/js/service/tf-service.js', __FILE__ ), [ 'jquery' ], false, true );
+        wp_register_script( 'tf-project', plugins_url( '/assets/js/project/tf-project.js', __FILE__ ), [ 'jquery' ], false, true );
+		wp_localize_script( 'tf-project', 'ajax_object', array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		));
         wp_register_script( 'tf-list-dots', plugins_url( '/assets/js/list-dots/tf-list-dots.js', __FILE__ ), [ 'jquery' ], false, true );
         
         wp_enqueue_script( 'jquery-justified', plugins_url( '/assets/js/jquery.justified.min.js', __FILE__ ), [ 'jquery' ], false, true );

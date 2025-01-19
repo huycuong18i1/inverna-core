@@ -85,3 +85,78 @@ add_filter( 'render_block', function( $block_content, $block ) {
     return wp_render_layout_support_flag( $block_content, $block );
 }, 10, 2 );
 
+add_action('wp_ajax_filter_project', 'filter_project');
+add_action('wp_ajax_nopriv_filter_project', 'filter_project');
+
+function filter_project() {
+    $category = $_POST['category'];
+	$paged = isset($_POST['paged']) ? intval($_POST['paged']) : 8;
+
+    $args = array(
+        'post_type' => 'project',
+        'post_status' => 'publish',
+        'posts_per_page' => $paged,
+    );
+
+    if ($category !== '*') {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'project_category',
+                'field' => 'slug',
+                'terms' => $category,
+            ),
+        );
+    }
+
+
+
+    $query = new WP_Query($args);
+
+    	if ($query->have_posts()) : ?>
+			<?php while ( $query->have_posts() ) : $query->the_post(); 
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            ?>
+
+            <div class="item">				
+
+<div class="project-post scale-hover">
+
+<div class="featured-post">
+
+<a href="<?php echo get_the_permalink(); ?>">
+
+<img src="<?php echo esc_url($thumbnail_url) ?>" alt="images">
+
+</a>
+
+</div>
+
+    <div class="content"> 
+
+            <h5 class="title border_eff">
+                <a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
+            </h5>
+            <div class="category-project"><?php echo esc_attr ( the_terms( get_the_ID(), 'project_category', '', ', ', '' ) ); ?></div>
+
+    </div>
+
+</div>
+
+</div>
+           
+		<?php endwhile; 
+		?>
+		
+	<?php else: ?>
+		
+        <?php esc_html_e('No posts found', 'themesflat-core'); ?>
+
+	<?php endif; ?>
+
+	<?php
+	wp_reset_postdata();
+    wp_die();
+}
+
+?>
+
